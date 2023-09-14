@@ -14,6 +14,10 @@ export const surveyModel = sequelize.define('survey', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    study_level: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     location: {
         type: DataTypes.STRING,
         allowNull: false
