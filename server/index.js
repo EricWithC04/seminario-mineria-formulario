@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors'
 import helmet from 'helmet';
 import 'dotenv/config'
+import { startDb } from './src/config/relations.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -24,5 +25,6 @@ sequelize.authenticate()
 
 app.listen(PORT, () => {
     console.log('listening on port', PORT);
+    startDb();
 });
 
