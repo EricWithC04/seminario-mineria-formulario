@@ -5,6 +5,8 @@ import LocalityModel from "../models/Locality.model.js";
 import DepartamentModel from "../models/Departament.model.js";
 import ProvinceModel from "../models/Province.model.js";
 import CountryModel from "../models/Country.model.js";
+import UserModel from "../models/User.model.js";
+import GenreModel from "../models/Genre.model.js";
 
 LocalityModel.belongsTo(DepartamentModel, {
     foreignKey: "idDepartament"
@@ -25,9 +27,16 @@ CountryModel.hasMany(ProvinceModel, {
     foreignKey: "idCountry"
 })
 
+UserModel.belongsTo(GenreModel, {
+    foreignKey: "idGenre"
+});
+GenreModel.hasMany(UserModel, {
+    foreignKey: "idGenre"
+});
+
 export async function startDb() {
     try {
-        await sequelize.sync({ force: false });
+        await sequelize.sync({ force: true });
     } catch (error) {
         console.log(error);
     }

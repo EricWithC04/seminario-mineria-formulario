@@ -1,17 +1,13 @@
 import { sequelize } from "../config/db.js";
 import { DataTypes } from "sequelize";
 
-const UserModel = sequelize.define("user", {
-    name: {
+const GenreModel = sequelize.define("genre", {
+    type: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    age: {
-        type: DataTypes.INTEGER,
         allowNull: false
     }
 }, {
     timestamps: false
 })
 
-export default UserModel
+export default GenreModel
