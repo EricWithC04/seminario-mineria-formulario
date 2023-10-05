@@ -1,6 +1,5 @@
-import { surveyModel } from "../models/Survey.model.js";
 import { levelStudyModel } from "../models/Level_study.js";
-import { sequelize } from "./db.js"; 
+import { sequelize } from "./db.js";
 import LocalityModel from "../models/Locality.model.js";
 import DepartamentModel from "../models/Departament.model.js";
 import ProvinceModel from "../models/Province.model.js";
