@@ -1,8 +1,16 @@
 import { sequelize } from '../config/db.js'
 import { DataTypes } from 'sequelize'
 
-const QuestionModel = sequelize.define('question', {
-    question: {
+const QuestionModel = sequelize.define('questions', {
+    favourite_songs: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    favourite_artists: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    favourite_genres: {
         type: DataTypes.STRING,
         allowNull: false
     },
