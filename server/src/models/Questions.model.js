@@ -7,7 +7,7 @@ const QuestionModel = sequelize.define('question', {
         allowNull: false
     },
     type_response: {
-        type: DataTypes.ENUM("song", "artist", "genre"),
+        type: DataTypes.ENUM("song", "artist", "genre", "occupation"),
         allowNull: false
     },
 })
