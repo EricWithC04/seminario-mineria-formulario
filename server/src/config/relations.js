@@ -5,9 +5,7 @@ import GenreModel from "../models/Genre.model.js";
 import { levelStudyModel } from "../models/Level_study.js";
 import { sequelize } from "./db.js";
 import LocalityModel from "../models/Locality.model.js";
-import DepartamentModel from "../models/Departament.model.js";
-import ProvinceModel from "../models/Province.model.js";
-import CountryModel from "../models/Country.model.js";
+import QuestionModel from "../models/Questions.model.js";
 
 UserModel.belongsTo(GenreModel, {
     foreignKey: "idGenre"
