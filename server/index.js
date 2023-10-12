@@ -2,11 +2,10 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors'
 import helmet from 'helmet';
-import 'dotenv/config'
+import environments from './src/environments/environments.js';
 import { startDb } from './src/config/relations.js';
 
 const app = express();
-const PORT = process.env.PORT || 4000;
 
 //Middleware
 app.use(morgan('dev'));
@@ -23,8 +22,8 @@ sequelize.authenticate()
     .catch(err => console.log(err))
 
 
-app.listen(PORT, () => {
-    console.log('listening on port', PORT);
+app.listen(environments.PORT, () => {
+    console.log('listening on port', environments.PORT);
     startDb();
 });
 
