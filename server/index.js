@@ -4,14 +4,20 @@ import cors from 'cors'
 import helmet from 'helmet';
 import environments from './src/environments/environments.js';
 import { startDb } from './src/config/relations.js';
+import userRouter from './src/routes/user.routes.js';
 
 const app = express();
 
 //Middleware
 app.use(morgan('dev'));
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: false
+}));
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+
+app.use("/api/user", userRouter)
 
 //Database
 import { sequelize } from './src/config/db.js';
