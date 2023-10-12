@@ -1,7 +1,7 @@
 import { sequelize } from "../config/db.js";
 import { DataTypes } from "sequelize";
 
-export const levelStudyModel = sequelize.define('study_level', {
+const LevelStudyModel = sequelize.define('study_level', {
     levelStudy: {
         type: DataTypes.STRING,
         allowNull: true
@@ -9,3 +9,15 @@ export const levelStudyModel = sequelize.define('study_level', {
 }, {
     timestamps: false
 });
+
+export const getAllLevelStudies = async () => {
+    const allLevelStudies = await LevelStudyModel.findAll()
+    return allLevelStudies
+}
+
+export const createLevelStudy = async (data) => {
+    const newLevelStudy = await LevelStudyModel.create(data)
+    return newLevelStudy
+}
+
+export default LevelStudyModel

@@ -8,4 +8,14 @@ const JobModel = sequelize.define('job', {
     }
 })
 
+export const getAllJobs = async () => {
+    const allJobs = await JobModel.findAll()
+    return allJobs
+}
+
+export const createJob = async (data) => {
+    const newJob = await JobModel.create(data)
+    return newJob
+}
+
 export default JobModel

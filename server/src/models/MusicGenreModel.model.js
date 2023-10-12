@@ -8,4 +8,14 @@ const MusicGenreModel = sequelize.define('music_genre', {
     }
 })
 
+export const getAllMusicGenres = async () => {
+    const allMusicGenres = await MusicGenreModel.findAll()
+    return allMusicGenres
+}
+
+export const createMusicGenre = async (data) => {
+    const newMusicGenre = await MusicGenreModel.create(data)
+    return newMusicGenre
+}
+
 export default MusicGenreModel

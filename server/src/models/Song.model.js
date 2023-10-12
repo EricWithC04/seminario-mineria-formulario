@@ -10,4 +10,14 @@ const SongModel = sequelize.define('song', {
     timestamps: false
 })
 
+export const getAllSongs = async () => {
+    const allSongs = await SongModel.findAll()
+    return allSongs
+}
+
+export const createSong = async (data) => {
+    const newSong = await SongModel.create(data)
+    return newSong
+}
+
 export default SongModel

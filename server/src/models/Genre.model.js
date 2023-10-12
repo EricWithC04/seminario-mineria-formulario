@@ -10,4 +10,14 @@ const GenreModel = sequelize.define("genre", {
     timestamps: false
 })
 
+export const getAllGenres = async () => {
+    const allGenres = await GenreModel.findAll()
+    return allGenres
+}
+
+export const createGenre = async (data) => {
+    const newGenre = await GenreModel.create(data)
+    return newGenre
+}
+
 export default GenreModel

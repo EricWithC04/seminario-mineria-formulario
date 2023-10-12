@@ -8,4 +8,14 @@ const ArtistModel = sequelize.define('artist', {
     }
 })
 
+export const getAllArtists = async () => {
+    const allArtists = await ArtistModel.findAll()
+    return allArtists
+}
+
+export const createArtist = async (data) => {
+    const newArtist = await ArtistModel.create(data)
+    return newArtist
+}
+
 export default ArtistModel

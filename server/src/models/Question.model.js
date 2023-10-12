@@ -20,4 +20,14 @@ const QuestionModel = sequelize.define('questions', {
     },
 })
 
+export const getAllQuestions = async () => {
+    const allQuestions = await QuestionModel.findAll()
+    return allQuestions
+}
+
+export const createQuestion = async (data) => {
+    const newQuestion = await QuestionModel.create(data)
+    return newQuestion
+}
+
 export default QuestionModel
