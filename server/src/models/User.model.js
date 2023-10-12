@@ -14,4 +14,32 @@ const UserModel = sequelize.define("user", {
     timestamps: false
 })
 
+export const findUsersModel = async () => {
+    const allUsers = await UserModel.findAll()
+    return allUsers
+}
+
+export const createUserModel = async (data) => {
+    const newUser = await UserModel.create(data)
+    return newUser
+}
+
+export const updateUserModel = async (data, id) => {
+    const updatedUser = await UserModel.update(data, {
+        where: {
+            id
+        }
+    })
+    return updatedUser
+}
+
+export const deleteUserModel = async (id) => {
+    const deletedUser = await UserModel.destroy({
+        where: {
+            id
+        }
+    })
+    return id
+}
+
 export default UserModel

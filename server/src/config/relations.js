@@ -10,8 +10,8 @@ import QuestionModel from "../models/Question.model.js";
 import MusicGenreModel from "../models/MusicGenreModel.model.js";
 import JobModel from "../models/Job.model.js";
 
-UserModel.belongsTo(ResponseModel, { foreignKey: "idResponse" });
-ResponseModel.hasMany(UserModel, { foreignKey: "idResponse" });
+ResponseModel.belongsTo(UserModel, { foreignKey: "idUser" });
+UserModel.hasMany(ResponseModel, { foreignKey: "idResponse" });
 
 QuestionModel.belongsToMany(ResponseModel, { through: "responses_has_questions" })
 ResponseModel.belongsToMany(QuestionModel, { through: "responses_has_questions" })
