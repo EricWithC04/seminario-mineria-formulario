@@ -3,7 +3,7 @@ import UserModel from "../models/User.model.js";
 import SongModel from "../models/Song.model.js";
 import GenreModel from "../models/Genre.model.js";
 import ArtistModel from "../models/Artist.model.js"
-import { levelStudyModel } from "../models/Level_study.js";
+import LevelStudyModel from "../models/Level_study.js";
 import LocalityModel from "../models/Locality.model.js";
 import ResponseModel from "../models/Response.model.js";
 import QuestionModel from "../models/Question.model.js";
@@ -31,8 +31,8 @@ GenreModel.hasMany(QuestionModel, { foreignKey: "idGenre" })
 QuestionModel.belongsTo(LocalityModel, { foreignKey: "idLocality" })
 LocalityModel.hasMany(QuestionModel, { foreignKey: "idLocality" })
 
-QuestionModel.belongsTo(levelStudyModel, { foreignKey: "idlevelStudy" })
-levelStudyModel.hasMany(QuestionModel, { foreignKey: "idlevelStudy" })
+QuestionModel.belongsTo(LevelStudyModel, { foreignKey: "idlevelStudy" })
+LevelStudyModel.hasMany(QuestionModel, { foreignKey: "idlevelStudy" })
 
 QuestionModel.belongsTo(JobModel, { foreignKey: "idJob" })
 JobModel.hasMany(QuestionModel, { foreignKey: "idJob" })
