@@ -64,14 +64,14 @@ const genres = [
 
 
 export async function startDb() {
-    MusicGenreModel.bulkCreate(genres)
-        .then(() => {
-            console.log("Generos registrados correctamente!");
-        })
-        .catch((err) => {
-            console.log("Ha ocurrido un error al registrar los generos!");
-            console.error(err);
-        })
+    // MusicGenreModel.bulkCreate(genres)
+        // .then(() => {
+        //     console.log("Generos registrados correctamente!");
+        // })
+        // .catch((err) => {
+        //     console.log("Ha ocurrido un error al registrar los generos!");
+        //     console.error(err);
+        // })
     try {
         await sequelize.sync({ force: false });
     } catch (error) {

@@ -1,7 +1,20 @@
 import '../../assets/css/survey.css';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const Formsurvey = () => {
+
+    const [genres, setGenres] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:4000/api/musicGenre", {
+            method: "GET",
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(res => setGenres(res))
+    }, [])
 
     {/* Nombre, Edad, Localidad, Genero(hombre o mujer), artista favorito, cancion favorita, genero favorito, si es estudiante, trabajador o vago (que no hace nada) */ }
     return (
@@ -47,7 +60,14 @@ export const Formsurvey = () => {
                     <div className='input-box'>
                         <span className='details'>Género favorito</span>
                         <select className='w-100' name="" id="">
-                            <option value=""></option>
+                            <option value="">Selecciona un Genero</option>
+                            {
+                                genres.length ? genres.map(genre => {
+                                    return (
+                                        <option value={genre.type}>{genre.type}</option>
+                                    )
+                                }) : <option value=""></option>
+                            }
                         </select>
                     </div>
                     <div className='input-box'>
