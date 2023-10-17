@@ -37,9 +37,43 @@ LevelStudyModel.hasMany(QuestionModel, { foreignKey: "idlevelStudy" })
 QuestionModel.belongsTo(JobModel, { foreignKey: "idJob" })
 JobModel.hasMany(QuestionModel, { foreignKey: "idJob" })
 
+const genres = [
+    { type: "Rock" },
+    { type: "Pop" },
+    { type: "Hip-hop" },
+    { type: "Jazz" },
+    { type: "Blues" },
+    { type: "Reggae" },
+    { type: "Country" },
+    { type: "Metal" },
+    { type: "Electronic" },
+    { type: "Funk" },
+    { type: "Salsa" },
+    { type: "Tango" },
+    { type: "Cumbia" },
+    { type: "Reggaetón" },
+    { type: "Flamenco" },
+    { type: "Indie" },
+    { type: "Punk" },
+    { type: "Clásica" },
+    { type: "Folk" },
+    { type: "Rap" },
+    { type: "Techno" },
+    { type: "Dubstep" },
+]
+
+
 export async function startDb() {
+    MusicGenreModel.bulkCreate(genres)
+        .then(() => {
+            console.log("Generos registrados correctamente!");
+        })
+        .catch((err) => {
+            console.log("Ha ocurrido un error al registrar los generos!");
+            console.error(err);
+        })
     try {
-        await sequelize.sync({ force: true });
+        await sequelize.sync({ force: false });
     } catch (error) {
         console.log(error);
     }
