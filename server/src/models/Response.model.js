@@ -15,8 +15,10 @@ export const getAllResponses = async () => {
     return allResponses
 }
 
-export const createResponse = async (data) => {
-    const newResponse = await ResponseModel.create(data)
+export const createResponse = async (idUser) => {
+    const newResponse = await ResponseModel.create({
+        idUser: idUser
+    })
     return newResponse
 }
 

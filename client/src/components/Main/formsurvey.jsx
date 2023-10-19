@@ -1,8 +1,8 @@
 import '../../assets/css/survey.css';
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2'
 
 export const Formsurvey = () => {
-
     const [genres, setGenres] = useState([])
 
     const [formInputs, setFormInputs] = useState({
@@ -49,12 +49,30 @@ export const Formsurvey = () => {
             },
             body: JSON.stringify(formInputs)
         })
-        .then(res => res.json())
-        .then(res => alert(`${res.message}`))
-        .catch(err => {
-            alert("Ha ocurrido un error al registrar tus respuestas!")
-            console.error(err)
-        })
+            .then(res => {
+                if (res.status === 201) {
+                    return res.json()
+                }
+                else {
+                    Swal.fire({
+                        title: "Error al guardar su respuesta",
+                        icon: "error"
+                    })
+                }
+            }
+            )
+            .then(res => {
+                Swal.fire({
+                    title: res.message,
+                    icon: "success"
+                })
+            })
+
+            .then(res => alert(`${res.message}`))
+            .catch(err => {
+                alert("Ha ocurrido un error al registrar tus respuestas!")
+                console.error(err)
+            })
     }
 
     {/* Nombre, Edad, Localidad, Genero(hombre o mujer), artista favorito, cancion favorita, genero favorito, si es estudiante, trabajador o vago (que no hace nada) */ }

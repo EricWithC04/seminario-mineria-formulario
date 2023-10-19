@@ -1,4 +1,5 @@
 import { getAllResponses, createResponse } from "../models/Response.model.js"
+import { createUserModel } from "../models/User.model.js"
 
 export const ctrlGetAllResponses = async (req, res) => {
     try {
@@ -19,7 +20,11 @@ export const ctrlGetAllResponses = async (req, res) => {
 
 export const ctrlCreateResponse = async (req, res) => {
     try {
-        const newResponse = await createResponse(req.body)
+        const { name, age } = req.body;
+        const newUser = await createUserModel(name, age);
+        const idUser = newUser.id
+
+        const newResponse = await createResponse(idUser)
 
         if (!newResponse) {
             res.status(500).send({

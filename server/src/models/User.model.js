@@ -19,8 +19,11 @@ export const findUsersModel = async () => {
     return allUsers
 }
 
-export const createUserModel = async (data) => {
-    const newUser = await UserModel.create(data)
+export const createUserModel = async (name, age) => {
+    const newUser = await UserModel.create({
+        name: name,
+        age: age
+    })
     return newUser
 }
 

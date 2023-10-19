@@ -11,7 +11,7 @@ import MusicGenreModel from "../models/MusicGenreModel.model.js";
 import JobModel from "../models/Job.model.js";
 
 ResponseModel.belongsTo(UserModel, { foreignKey: "idUser" });
-UserModel.hasMany(ResponseModel, { foreignKey: "idResponse" });
+
 
 QuestionModel.belongsToMany(ResponseModel, { through: "responses_has_questions" })
 ResponseModel.belongsToMany(QuestionModel, { through: "responses_has_questions" })
@@ -65,13 +65,13 @@ const genres = [
 
 export async function startDb() {
     // MusicGenreModel.bulkCreate(genres)
-        // .then(() => {
-        //     console.log("Generos registrados correctamente!");
-        // })
-        // .catch((err) => {
-        //     console.log("Ha ocurrido un error al registrar los generos!");
-        //     console.error(err);
-        // })
+    // .then(() => {
+    //     console.log("Generos registrados correctamente!");
+    // })
+    // .catch((err) => {
+    //     console.log("Ha ocurrido un error al registrar los generos!");
+    //     console.error(err);
+    // })
     try {
         await sequelize.sync({ force: false });
     } catch (error) {
