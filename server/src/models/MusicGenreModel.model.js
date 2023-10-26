@@ -6,11 +6,22 @@ const MusicGenreModel = sequelize.define('music_genre', {
         type: DataTypes.STRING,
         allowNull: false
     }
+}, {
+    timestamps: false
 })
 
 export const getAllMusicGenres = async () => {
     const allMusicGenres = await MusicGenreModel.findAll()
     return allMusicGenres
+}
+
+export const findOneMusicGenreModel = async (id) => {
+    const oneMusicGenre = await MusicGenreModel.findOne({
+        where: {
+            id
+        }
+    })
+    return oneMusicGenre
 }
 
 export const createMusicGenre = async (data) => {

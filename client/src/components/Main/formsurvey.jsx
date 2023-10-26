@@ -42,7 +42,7 @@ export const Formsurvey = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const registeredResponses = fetch("http://localhost:4000/api/response", {
+        const registeredResponses = fetch("http://localhost:4000/api/question", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -73,18 +73,18 @@ export const Formsurvey = () => {
                     </div>
                 </div>
                 <div className='gender-details'>
-                    <input type="radio" name='genre' value="Femenino" id="dot-1" />
-                    <input type="radio" name='genre' value="Masculino" id="dot-2" />
-                    <input type="radio" name='genre' value="Prefiero no decirlo" id="dot-3" />
+                    <input type="radio" name='genre' value="1" id="dot-1" />
+                    <input type="radio" name='genre' value="2" id="dot-2" />
+                    <input type="radio" name='genre' value="3" id="dot-3" />
                     <span className='gender-title'>Género</span>
                     <div className='category'>
                         <label htmlFor="dot-1">
                             <span className='dot one'></span>
-                            <span className='gender'>Femenino</span>
+                            <span className='gender'>Masculino</span>
                         </label>
                         <label htmlFor="dot-2">
                             <span className='dot two'></span>
-                            <span className='gender'>Masculino</span>
+                            <span className='gender'>Femenino</span>
                         </label>
                         <label htmlFor="dot-3">
                             <span className='dot three'></span>
@@ -105,7 +105,7 @@ export const Formsurvey = () => {
                             {
                                 genres.length ? genres.map(genre => {
                                     return (
-                                        <option key={genre.id} value={genre.type}>{genre.type}</option>
+                                        <option key={genre.id} value={parseInt(genre.id)}>{genre.type}</option>
                                     )
                                 }) : <option value=""></option>
                             }
