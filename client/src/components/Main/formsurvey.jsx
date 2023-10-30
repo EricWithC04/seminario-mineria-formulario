@@ -12,6 +12,8 @@ export const Formsurvey = () => {
         email: "",
         locality: "",
         ocupation: "",
+        level_study: "",
+        job: "",
         favouriteSong: "",
         favouriteGenre: "",
         favouriteArtist: "",
@@ -113,13 +115,40 @@ export const Formsurvey = () => {
                     </div>
                     <div className='input-box'>
                         <span className='details'>Ocupación</span>
-                        <select className='w-100 form-select' name="ocupation" id="">
+                        <select className='w-100 form-select' name="ocupation">
                             <option value="">Seleccione su ocupación</option>
                             <option value="Estudiante">Estudiante</option>
                             <option value="Trabajador">Trabajador</option>
                             <option value="Otro">Otro</option>
                         </select>
                     </div>
+                        {
+                            formInputs.ocupation.length && formInputs.ocupation !== "Otro" ? (
+                                <div className="input-box"> 
+                                    {
+                                        formInputs.ocupation === "Estudiante" ?
+                                        (
+                                            <>
+                                                <span className='details'>Nivel de estudio</span>
+                                                <select name="level_study" className='form-select'>
+                                                    <option value="">Seleccionar</option>
+                                                    <option value="1">Primaria</option>
+                                                    <option value="2">Secundaria</option>
+                                                    <option value="3">Terciario</option>
+                                                    <option value="4">Univsersitario</option>
+                                                    <option value="5">Otro</option>
+                                                </select>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>Descripción del trabajo</span>
+                                                <input type="text" name="job" placeholder='Breve descripción de su trabajo...'/>
+                                            </>
+                                        )
+                                    }
+                                </div>
+                            ) : null
+                        }
                     <div className='input-box'>
                         <span className='details'>Canción Favorita</span>
                         <input type="text" name="favouriteSong" placeholder='Canción' />
