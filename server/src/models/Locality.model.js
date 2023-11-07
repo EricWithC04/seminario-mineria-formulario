@@ -15,6 +15,18 @@ export const getAllLocalitys = async () => {
     return allLocalitys
 }
 
+export const findOrCreateLocalityModel = async (name) => {
+    const [oneLocality] = await LocalityModel.findOrCreate({
+        where: {
+            name
+        },
+        defaults: {
+            name: name
+        }
+    })
+    return oneLocality
+}
+
 export const createLocality = async (data) => {
     const newLocality = await LocalityModel.create(data)
     return newLocality

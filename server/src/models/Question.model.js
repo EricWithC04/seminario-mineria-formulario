@@ -1,27 +1,24 @@
 import { sequelize } from '../config/db.js'
 import { DataTypes } from 'sequelize'
+import SongModel from './Song.model.js'
+import ArtistModel from './Artist.model.js'
+import MusicGenreModel from './MusicGenreModel.model.js'
 
 const QuestionModel = sequelize.define('questions', {
-    favourite_songs: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    favourite_artists: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    favourite_genres: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    type_response: {
-        type: DataTypes.ENUM("song", "artist", "genre", "occupation"),
-        allowNull: false
-    },
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        unique: true,
+        primaryKey: true,
+        allowNull: true
+    }
 })
 
 export const getAllQuestions = async () => {
-    const allQuestions = await QuestionModel.findAll()
+    const allQuestions = await QuestionModel.findAll({
+        include: [SongModel, ArtistModel, MusicGenreModel
+        ]
+    })
     return allQuestions
 }
 

@@ -20,6 +20,8 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.6.0",
+    "pg": "^8.11.3",
+    "pg-protocol": "^1.6.0",
     "sequelize": "^6.32.1"
   },
   "devDependencies": {

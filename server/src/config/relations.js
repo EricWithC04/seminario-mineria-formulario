@@ -5,16 +5,12 @@ import GenreModel from "../models/Genre.model.js";
 import ArtistModel from "../models/Artist.model.js"
 import LevelStudyModel from "../models/Level_study.js";
 import LocalityModel from "../models/Locality.model.js";
-import ResponseModel from "../models/Response.model.js";
 import QuestionModel from "../models/Question.model.js";
 import MusicGenreModel from "../models/MusicGenreModel.model.js";
 import JobModel from "../models/Job.model.js";
 
-ResponseModel.belongsTo(UserModel, { foreignKey: "idUser" });
-UserModel.hasMany(ResponseModel, { foreignKey: "idResponse" });
-
-QuestionModel.belongsToMany(ResponseModel, { through: "responses_has_questions" })
-ResponseModel.belongsToMany(QuestionModel, { through: "responses_has_questions" })
+QuestionModel.belongsToMany(UserModel, { through: "users_has_responses" })
+UserModel.belongsToMany(QuestionModel, { through: "users_has_responses" })
 
 QuestionModel.belongsTo(ArtistModel, { foreignKey: "idArtist" })
 ArtistModel.hasMany(QuestionModel, { foreignKey: "idArtist" })
@@ -37,7 +33,7 @@ LevelStudyModel.hasMany(QuestionModel, { foreignKey: "idlevelStudy" })
 QuestionModel.belongsTo(JobModel, { foreignKey: "idJob" })
 JobModel.hasMany(QuestionModel, { foreignKey: "idJob" })
 
-const genres = [
+const musicGenres = [
     { type: "Rock" },
     { type: "Pop" },
     { type: "Hip-hop" },
@@ -62,16 +58,38 @@ const genres = [
     { type: "Dubstep" },
 ]
 
+const genres = [
+    { type: "Masculino" },
+    { type: "Femenino" },
+    { type: "Indefinido" }
+]
+
+const levels = [
+    { levelStudy: "Primaria" },
+    { levelStudy: "Secundaria" },
+    { levelStudy: "Terciario" },
+    { levelStudy: "Universitario" },
+    { levelStudy: "Otros" },
+]
 
 export async function startDb() {
-    // MusicGenreModel.bulkCreate(genres)
-        // .then(() => {
-        //     console.log("Generos registrados correctamente!");
-        // })
-        // .catch((err) => {
-        //     console.log("Ha ocurrido un error al registrar los generos!");
-        //     console.error(err);
-        // })
+    // MusicGenreModel.bulkCreate(musicGenres)
+    //     .then(() => {
+    //         console.log("Generos registrados correctamente!");
+    //     })
+    //     .catch((err) => {
+    //         console.log("Ha ocurrido un error al registrar los generos!");
+    //         console.error(err);
+    //     })
+    // GenreModel.bulkCreate(genres)
+    //     .then(() => {
+    //         console.log("Generos registrados correctamente");
+    //     })
+    //     .catch((err) => {
+    //         console.log("Ha ocurrido un error al registrar los generos!");
+    //         console.error(err);
+    //     })
+    // LevelStudyModel.bulkCreate(levels)
     try {
         await sequelize.sync({ force: false });
     } catch (error) {

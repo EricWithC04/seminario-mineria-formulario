@@ -15,6 +15,18 @@ export const getAllSongs = async () => {
     return allSongs
 }
 
+export const findOrCreateSongModel = async (name) => {
+    const [oneSong] = await SongModel.findOrCreate({
+        where: {
+            name
+        },
+        defaults: {
+            name: name
+        }
+    })
+    return oneSong
+}
+
 export const createSong = async (data) => {
     const newSong = await SongModel.create(data)
     return newSong

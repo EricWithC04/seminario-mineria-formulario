@@ -9,6 +9,11 @@ const UserModel = sequelize.define("user", {
     age: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
     }
 }, {
     timestamps: false
@@ -17,6 +22,15 @@ const UserModel = sequelize.define("user", {
 export const findUsersModel = async () => {
     const allUsers = await UserModel.findAll()
     return allUsers
+}
+
+export const findOneUsersModel = async (email) => {
+    const oneUser = await UserModel.findOne({
+        where: {
+            email: email
+        }
+    })
+    return oneUser
 }
 
 export const createUserModel = async (data) => {

@@ -6,11 +6,25 @@ const ArtistModel = sequelize.define('artist', {
         type: DataTypes.STRING,
         allowNull: false
     }
+}, {
+    timestamps: false
 })
 
 export const getAllArtists = async () => {
     const allArtists = await ArtistModel.findAll()
     return allArtists
+}
+
+export const findOrCreateArtistModel = async (name) => {
+    const [oneArtist] = await ArtistModel.findOrCreate({
+        where: {
+            name
+        },
+        defaults: {
+            name: name
+        }
+    })
+    return oneArtist
 }
 
 export const createArtist = async (data) => {

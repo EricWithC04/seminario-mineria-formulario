@@ -12,6 +12,8 @@ export const Formsurvey = () => {
         email: "",
         locality: "",
         ocupation: "",
+        level_study: "",
+        job: "",
         favouriteSong: "",
         favouriteGenre: "",
         favouriteArtist: "",
@@ -42,19 +44,19 @@ export const Formsurvey = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const registeredResponses = fetch("http://localhost:4000/api/response", {
+        const registeredResponses = fetch("http://localhost:4000/api/question", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(formInputs)
         })
-        .then(res => res.json())
-        .then(res => alert(`${res.message}`))
-        .catch(err => {
-            alert("Ha ocurrido un error al registrar tus respuestas!")
-            console.error(err)
-        })
+            .then(res => res.json())
+            .then(res => alert(`${res.message}`))
+            .catch(err => {
+                alert("Ha ocurrido un error al registrar tus respuestas!")
+                console.error(err)
+            })
     }
 
     {/* Nombre, Edad, Localidad, Genero(hombre o mujer), artista favorito, cancion favorita, genero favorito, si es estudiante, trabajador o vago (que no hace nada) */ }
@@ -65,26 +67,26 @@ export const Formsurvey = () => {
                 <div className="user-details">
                     <div className='input-box'>
                         <span className='details'>Nombre Completo</span>
-                        <input type="text" name="name" placeholder='Ingrese su nombre completo' />
+                        <input type="text" name="name" autoComplete='off' placeholder='Ingrese su nombre completo' />
                     </div>
                     <div className='input-box'>
                         <span className='details'>Edad</span>
-                        <input type="text" name="age" placeholder='Ingrese su edad' />
+                        <input type="number" name="age" autoComplete='off' placeholder='Ingrese su edad' />
                     </div>
                 </div>
                 <div className='gender-details'>
-                    <input type="radio" name='genre' value="Femenino" id="dot-1" />
-                    <input type="radio" name='genre' value="Masculino" id="dot-2" />
-                    <input type="radio" name='genre' value="Prefiero no decirlo" id="dot-3" />
+                    <input type="radio" name='genre' value="1" id="dot-1" />
+                    <input type="radio" name='genre' value="2" id="dot-2" />
+                    <input type="radio" name='genre' value="3" id="dot-3" />
                     <span className='gender-title'>Género</span>
                     <div className='category'>
                         <label htmlFor="dot-1">
                             <span className='dot one'></span>
-                            <span className='gender'>Femenino</span>
+                            <span className='gender'>Masculino</span>
                         </label>
                         <label htmlFor="dot-2">
                             <span className='dot two'></span>
-                            <span className='gender'>Masculino</span>
+                            <span className='gender'>Femenino</span>
                         </label>
                         <label htmlFor="dot-3">
                             <span className='dot three'></span>
@@ -96,7 +98,7 @@ export const Formsurvey = () => {
 
                     <div className='input-box'>
                         <span className='details'>Artista Favorito</span>
-                        <input type="text" name="favouriteArtist" placeholder='Artista' />
+                        <input type="text" autoComplete='off' name="favouriteArtist" placeholder='Artista' />
                     </div>
                     <div className='input-box'>
                         <span className='details'>Género favorito</span>
@@ -105,7 +107,7 @@ export const Formsurvey = () => {
                             {
                                 genres.length ? genres.map(genre => {
                                     return (
-                                        <option key={genre.id} value={genre.type}>{genre.type}</option>
+                                        <option key={genre.id} value={parseInt(genre.id)}>{genre.type}</option>
                                     )
                                 }) : <option value=""></option>
                             }
@@ -113,24 +115,51 @@ export const Formsurvey = () => {
                     </div>
                     <div className='input-box'>
                         <span className='details'>Ocupación</span>
-                        <select className='w-100 form-select' name="ocupation" id="">
+                        <select className='w-100 form-select' name="ocupation">
                             <option value="">Seleccione su ocupación</option>
                             <option value="Estudiante">Estudiante</option>
                             <option value="Trabajador">Trabajador</option>
                             <option value="Otro">Otro</option>
                         </select>
                     </div>
+                    {
+                        formInputs.ocupation.length && formInputs.ocupation !== "Otro" ? (
+                            <div className="input-box">
+                                {
+                                    formInputs.ocupation === "Estudiante" ?
+                                        (
+                                            <>
+                                                <span className='details'>Nivel de estudio</span>
+                                                <select name="level_study" className='form-select'>
+                                                    <option value="">Seleccionar</option>
+                                                    <option value="1">Primaria</option>
+                                                    <option value="2">Secundaria</option>
+                                                    <option value="3">Terciario</option>
+                                                    <option value="4">Univsersitario</option>
+                                                    <option value="5">Otro</option>
+                                                </select>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>Descripción del trabajo</span>
+                                                <input type="text" autoComplete='off' name="job" placeholder='Breve descripción de su trabajo...' />
+                                            </>
+                                        )
+                                }
+                            </div>
+                        ) : null
+                    }
                     <div className='input-box'>
                         <span className='details'>Canción Favorita</span>
-                        <input type="text" name="favouriteSong" placeholder='Canción' />
+                        <input type="text" autoComplete='off' name="favouriteSong" placeholder='Canción' />
                     </div>
                     <div className='input-box'>
                         <span className='details'>Email</span>
-                        <input type="text" name="email" placeholder='Ingrese su email' />
+                        <input type="text" autoComplete='off' name="email" placeholder='Ingrese su email' />
                     </div>
                     <div className='input-box'>
                         <span className='details'>localidad</span>
-                        <input type="text" name="locality" placeholder='Ingrese su localidad' />
+                        <input type="text" autoComplete='off' name="locality" placeholder='Ingrese su localidad' />
                     </div>
                 </div>
                 <div className='button'>
