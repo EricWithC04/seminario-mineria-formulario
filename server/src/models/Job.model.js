@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize'
 
 const JobModel = sequelize.define('job', {
     description: {
-        type: DataTypes.ENUM("student", "worker", "nothing"),
+        type: DataTypes.STRING,
         allowNull: false
     }
 })

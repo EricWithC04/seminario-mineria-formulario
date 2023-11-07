@@ -5,16 +5,11 @@ import ArtistModel from './Artist.model.js'
 import MusicGenreModel from './MusicGenreModel.model.js'
 
 const QuestionModel = sequelize.define('questions', {
-    favourite_songs: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    favourite_artists: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    favourite_genres: {
-        type: DataTypes.STRING,
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        unique: true,
+        primaryKey: true,
         allowNull: true
     }
 })

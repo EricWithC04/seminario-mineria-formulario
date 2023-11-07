@@ -15,6 +15,11 @@ export const getAllLevelStudies = async () => {
     return allLevelStudies
 }
 
+export const getOneLevelStudy = async (id) => {
+    const levelS = await LevelStudyModel.findByPk(id)
+    return levelS
+}
+
 export const createLevelStudy = async (data) => {
     const newLevelStudy = await LevelStudyModel.create(data)
     return newLevelStudy

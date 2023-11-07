@@ -64,6 +64,14 @@ const genres = [
     { type: "Indefinido" }
 ]
 
+const levels = [
+    { levelStudy: "Primaria" },
+    { levelStudy: "Secundaria" },
+    { levelStudy: "Terciario" },
+    { levelStudy: "Universitario" },
+    { levelStudy: "Otros" },
+]
+
 export async function startDb() {
     // MusicGenreModel.bulkCreate(musicGenres)
     //     .then(() => {
@@ -81,6 +89,7 @@ export async function startDb() {
     //         console.log("Ha ocurrido un error al registrar los generos!");
     //         console.error(err);
     //     })
+    // LevelStudyModel.bulkCreate(levels)
     try {
         await sequelize.sync({ force: false });
     } catch (error) {
